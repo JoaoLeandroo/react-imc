@@ -11,9 +11,11 @@ export default function App() {
   function calculadorImc() {
     const imc = weight / (height * height)
     const formatterImc = imc.toFixed(2)
-
-    if(weight === '' && height === '') {
+    console.log(typeof formatterImc)
+    if(weight === '' && height === '' || formatterImc === 'NaN') {
       setResult('')
+      setHeight('')
+      setWeight('')
       toast.warn("Informe seu Peso e Altura")
       return
     }
@@ -43,8 +45,9 @@ export default function App() {
           IMC: ${formatterImc} -
           Obesidade Grau (3)`)
       }
+      toast.success("IMC Gerado com Sucesso!")
     }
-    toast.success("IMC Gerado com Sucesso!")
+
     setHeight('')
     setWeight('')
     return
